@@ -70,7 +70,7 @@ public class RangeSeekBarView extends View {
     private void init() {
         mThumbs = Thumb.initThumbs(getResources());
         mThumbWidth = Thumb.getWidthBitmap(mThumbs);
-        mThumbHeight = Thumb.getHeightBitmap(mThumbs);
+        mThumbHeight = 0;//Thumb.getHeightBitmap(mThumbs);
 
         mScaleRangeMax = 100;
         mHeightTimeLine = getContext().getResources().getDimensionPixelOffset(R.dimen.frames_video_height);
@@ -208,7 +208,7 @@ public class RangeSeekBarView extends View {
 
                 // Invalidate to request a redraw
                 invalidate();
-                return true;
+                return false;
             }
         }
         return false;
@@ -334,9 +334,9 @@ public class RangeSeekBarView extends View {
         if (!mThumbs.isEmpty()) {
             for (Thumb th : mThumbs) {
                 if (th.getIndex() == 0) {
-                    canvas.drawBitmap(th.getBitmap(), th.getPos() + getPaddingLeft(), getPaddingTop() + mHeightTimeLine, null);
+                    canvas.drawBitmap(th.getBitmap(), th.getPos() + getPaddingLeft(), getPaddingTop() , null);
                 } else {
-                    canvas.drawBitmap(th.getBitmap(), th.getPos() - getPaddingRight(), getPaddingTop() + mHeightTimeLine, null);
+                    canvas.drawBitmap(th.getBitmap(), th.getPos() - getPaddingRight(), getPaddingTop() , null);
                 }
             }
         }
